@@ -1,0 +1,21 @@
+<h2>Button Group</h2>
+
+<app-button-group [view]="buttonGroup"></app-button-group>
+<div class="sample-code">
+    <clr-tabs>
+        <clr-tab>
+            <button clrTabLink id="link1">Code</button>
+            <clr-tab-content id="content1" *clrIfActive>
+                <pre><code>{{ code }}</code></pre>
+            </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+            <button clrTabLink>JSON</button>
+            <clr-tab-content *clrIfActive>
+                <pre><code>{{ json }}</code></pre>
+            </clr-tab-content>
+        </clr-tab>
+    </clr-tabs>
+</div>
+
+<app-button-group [view]="multipleButtons"></app-button-group>

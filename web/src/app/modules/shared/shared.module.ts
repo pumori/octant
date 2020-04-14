@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TextComponent } from './components/presentation/text/text.component';
 import { MarkdownModule } from 'ngx-markdown';
@@ -51,7 +51,6 @@ import { PortsComponent } from './components/presentation/ports/ports.component'
 import { FiltersComponent } from './components/smart/filters/filters.component';
 import { HeptagonComponent } from './components/smart/heptagon/heptagon.component';
 import { ContextSelectorComponent } from './components/smart/context-selector/context-selector.component';
-import { SliderViewComponent } from './components/smart/slider-view/slider-view.component';
 import { SafePipe } from './pipes/safe/safe.pipe';
 import { AnsiPipe } from './pipes/ansiPipe/ansi.pipe';
 import { DefaultPipe } from './pipes/default/default.pipe';
@@ -112,7 +111,6 @@ import { OverflowLabelsComponent } from './components/presentation/overflow-labe
     RelativePipe,
     SelectorsComponent,
     SingleStatComponent,
-    SliderViewComponent,
     SummaryComponent,
     TableComponent,
     TabsComponent,
@@ -180,7 +178,6 @@ import { OverflowLabelsComponent } from './components/presentation/overflow-labe
     QuadrantComponent,
     ResourceViewerComponent,
     SelectorsComponent,
-    SliderViewComponent,
     SingleStatComponent,
     SummaryComponent,
     TableComponent,
@@ -193,4 +190,11 @@ import { OverflowLabelsComponent } from './components/presentation/overflow-labe
     OverflowLabelsComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [],
+    };
+  }
+}

@@ -5,7 +5,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { LogEntry, LogResponse } from 'src/app/modules/shared/models/content';
+import { LogEntry, LogResponse } from '../../shared/models/content';
 import getAPIBase from '../services/common/getAPIBase';
 
 const API_BASE = getAPIBase();

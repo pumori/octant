@@ -14,7 +14,7 @@ import {
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import { TimestampView, View } from 'src/app/modules/shared/models/content';
+import { TimestampView, View } from '../../../../shared/models/content';
 
 @Component({
   selector: 'app-view-timestamp',

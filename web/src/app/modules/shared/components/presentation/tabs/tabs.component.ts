@@ -9,8 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { View, ButtonGroupView } from 'src/app/modules/shared/models/content';
-import { SliderService } from 'src/app/modules/shared/slider/slider.service';
+import { View, ButtonGroupView } from '../../../../shared/models/content';
 import { ViewService } from '../../../services/view/view.service';
 import { WebsocketService } from '../../../services/websocket/websocket.service';
 
@@ -44,7 +43,6 @@ export class TabsComponent implements OnChanges, OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private viewService: ViewService,
-    private sliderService: SliderService,
     private wss: WebsocketService
   ) {}
 
@@ -66,29 +64,6 @@ export class TabsComponent implements OnChanges, OnInit {
           accessor: view.metadata.accessor,
         };
       });
-
-      if (this.extView && this.tabs.length > 0) {
-        this.sliderService.activeTab.subscribe(index => {
-          this.activeTabIndex = index;
-        });
-
-        // Initial load if there are existing tabs
-        if (this.activeTabIndex === null) {
-          this.activeTabIndex = this.tabs.length - 1;
-        }
-
-        if (!changes.views.isFirstChange()) {
-          const preViews = changes.views.previousValue as View[];
-          // Focus new tab
-          if (views.length > preViews.length && !this.closingTab) {
-            this.activeTabIndex = this.tabs.length - 1;
-          }
-          this.closingTab = false;
-        }
-        this.sliderService.activeTab.next(this.activeTabIndex);
-        this.activeTab = this.tabs[this.activeTabIndex].accessor;
-        this.setMarker(this.activeTab);
-      }
     }
   }
 
@@ -102,10 +77,6 @@ export class TabsComponent implements OnChanges, OnInit {
     }
     this.activeTab = tabAccessor;
     this.setMarker(tabAccessor);
-    if (this.extView) {
-      const tabIndex = this.tabs.findIndex(tab => tab.accessor === tabAccessor);
-      this.sliderService.activeTab.next(tabIndex);
-    }
   }
 
   closeTab(tabAccessor: string) {
@@ -147,11 +118,9 @@ export class TabsComponent implements OnChanges, OnInit {
 
       // Closed remaining tab
       if (this.tabs.length === 0) {
-        this.sliderService.activeTab.next(null);
         return;
       }
     }
-    this.sliderService.activeTab.next(this.activeTabIndex);
     this.activeTab = this.tabs[this.activeTabIndex].accessor;
     this.setMarker(this.activeTab);
   }

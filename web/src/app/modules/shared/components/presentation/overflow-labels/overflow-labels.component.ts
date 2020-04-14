@@ -3,7 +3,7 @@
 //
 
 import { Component, Input } from '@angular/core';
-import trackByIdentity from 'src/app/util/trackBy/trackByIdentity';
+import trackByIdentity from '../../../../../util/trackBy/trackByIdentity';
 import { LabelFilterService } from '../../../services/label-filter/label-filter.service';
 
 interface Labels {
