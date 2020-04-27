@@ -41,6 +41,14 @@ func LoadObjectFromFile(t *testing.T, objectFile string) runtime.Object {
 	return object
 }
 
+// LoadTestData loads a file in the testdata directory.
+func LoadTestData(t *testing.T, fileName string) []byte {
+	data, err := ioutil.ReadFile(filepath.Join("testdata", fileName))
+	require.NoError(t, err)
+
+	return data
+}
+
 // LoadUnstructuredFromFile loads an object from a file in the in `testdata` directory.
 // It will assign a `default` namespace if one is not set. This helper does not support
 // multiple objects in a YAML file.
